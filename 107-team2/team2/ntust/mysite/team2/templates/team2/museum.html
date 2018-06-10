@@ -1,0 +1,207 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+
+body {font-family: "Lato", sans-serif,微軟正黑體;}
+.mySlides {display: none}
+.container-fluid.main{
+  position: relative; /* To make the navbar positions relative to this container */
+  padding: 0;
+}
+
+.navbar-default {
+  background-image: none;
+  background-color: transparent; /* Make the menu become transparent */
+  border-radius: 0px;
+  border: 0;
+  box-shadow: none;
+  padding: 0px;
+  position: absolute; /* Make the menu out of the document flow so it can placed anywhere without disturbing other widgets */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0; /* If you delete this line, your menu link won't be clicked because it is behind the background. Applying this code bring the menu in front of the background */
+}
+
+.navbar-default .navbar-brand {
+  font-family: Verdana;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle:focus {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.button {
+    background-color:  #e7e7e7;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body >
+  <div class="container-fluid main">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+<div class="w3-top"  >
+  <div class="w3-bar w3-black w3-card-2">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="/team2/my.html" class="w3-bar-item w3-button w3-padding-large">首頁</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">地區劃分<i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+
+          {% for i in area %}
+          <a href="/team2/{{i.pk}}" class="w3-bar-item w3-button">{{i.area}}</a>
+          {% endfor %}
+      </div>
+    </div>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">性質劃分<i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+          {% for i in m_type %}
+          <a href="/team2/t{{i.pk}}" class="w3-bar-item w3-button">{{i.m_type}}</a>
+          {% endfor %}
+      </div>
+    </div>
+    <a href="/team2/about.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">關於我們</a>
+    
+    
+  </div>
+</div>
+      <!--<div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          
+          </ul>
+        </div>-->
+      </div>
+     </nav>
+</div>
+
+
+            <p align="center"><h1 style="margin:70px;font-size:400%">Meseum Information</h1></p>
+ 
+<table align="center"> 
+      <p><img src="{{ museum.img.url }}" alt=""/ style="margin-left:10%;float:left;width:500px;height:400px;"></p>
+
+<td >
+    <tr style="text-align:left;">
+        <th>博物館名</th>
+        <th>{{museum.name}}</th>
+    </tr>
+    <tr style="text-align:left;">
+        <th>全票價格</th>
+        <th>{{museum.price_adult}}</th>
+    </tr>
+    <tr style="text-align:left;">
+        <th nowrap="nowrap">優待票價格</th>
+        <th>{{museum.price_discount}}</th>
+    </tr>
+    <tr style="text-align:left;">
+        <th>開放時間</th>
+        <th >{{museum.time}}</th>
+    </tr>
+    <tr style="text-align:left;">
+        <th>休館日</th>
+        <th >{{museum.rest}}</th>
+        <p></p>
+    </tr>
+
+    <tr style="text-align:left;">
+        <th>博物館簡介</th>
+
+        <th >{{museum.intro}}</th>
+    </tr>
+    <tr style="text-align:left;">
+      <th><a href="/team2/c{{museum.pk}}/"> 評價區 </a></th>  
+    </tr>
+    <tr>
+
+
+
+        <th><th>     
+        <h2 style="font-family:微軟正黑體;"><a href="{{museum.hy}}" target="_blank">官方網站</a></h2>
+    </tr>
+    
+
+    
+    <tr>
+      <th><th>
+      <th style="font-family:微軟正黑體;"><input type="button"  class="button" onclick="history.back()" value="回上一頁" ></th>
+      
+    </tr>
+     
+</td>
+</table>
+<style type="text/css">
+.post img:hover {
+transform: scale(2,2);
+
+}
+</style>
+
+<div class="post">
+
+{% if museum.img1  %}
+  <p align="center"><img src="{{ museum.img1.url }}" alt=""/ style="width:250px;height:150px;">
+{% endif %}
+{% if museum.img2  %}
+  <img src="{{ museum.img2.url }}" alt=""/ alt=""/ style="width:250px;height:150px;">
+{% endif %}
+{% if museum.img3  %}
+  <img src="{{ museum.img3.url }}" alt=""/ alt=""/ style="width:250px;height:150px;">
+{% endif %}
+{% if museum.img4  %}
+  <img src="{{ museum.img4.url }}" alt=""/ alt=""/ style="width:250px;height:150px;">
+{% endif %}
+{% if museum.img5  %}
+  <img src="{{ museum.img5.url }}" alt=""/ alt=""/ style="width:250px;height:150px;"></p>
+{% endif %}
+</div>
+</body>
+</html>
